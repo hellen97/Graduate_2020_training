@@ -10,12 +10,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.mastek.hrapp.dao.DepartmentJPADAO;
 //import com.mastek.hrapp.dao.DepartmentJPADAO;
 import com.mastek.hrapp.dao.EmployeeJPADAO;
+import com.mastek.hrapp.dao.PaymentJPADAO;
 import com.mastek.hrapp.dao.ProjectJPADAO;
+import com.mastek.hrapp.entities.CardPayment;
+import com.mastek.hrapp.entities.CheckPayment;
 import com.mastek.hrapp.entities.Department;
 //import com.mastek.hrapp.dao.ProjectJPADAO;
 //import com.mastek.hrapp.entities.Department;
 import com.mastek.hrapp.entities.Designation;
 import com.mastek.hrapp.entities.Employee;
+import com.mastek.hrapp.entities.Payment;
 import com.mastek.hrapp.entities.Project;
 //import com.mastek.hrapp.entities.Project;
 import com.mastek.hrapp.services.EmployeeService;
@@ -31,7 +35,8 @@ class HrappApplicationTests {
     @Autowired
     EmployeeService empSvc1;
     
-    
+    @Autowired
+    PaymentJPADAO paymentDAO;
     
     
     @Autowired
@@ -43,8 +48,43 @@ class HrappApplicationTests {
     @Autowired
     ProjectJPADAO proDAO;
     
+    @Test
+    void testcashPaymentAdd() {
+    	Payment cashP = new Payment();
+    	cashP.setAmount(100);
+    	
+    	cashP= paymentDAO.save(cashP);
+    	
+    	System.out.println(cashP);
+    	assertNotNull(cashP,"Cash Paymet Not saved");
+    }
     
     
+    @Test
+    void testCardPaymentAdd() {
+    	CardPayment cardP = new CardPayment();
+    		cardP.setAmount(2300);
+    		cardP.setCardNumber(1232);
+    		cardP.setCardService("visa");
+    		
+    		cardP = paymentDAO.save(cardP);
+    				System.out.println(cardP);
+    				assertNotNull(cardP,"Card Payment not saved");
+    		
+    }
+    
+    @Test
+    void testCheckPaymentAdd() {
+    		CheckPayment  checP = new CheckPayment();
+    		checP.setAmount(444);
+    		checP.setBankName("rbs");
+    		checP.setCheckNumber(1223);
+    		
+    		checP = paymentDAO.save(checP);
+    		System.out.println("check payment not saved");
+    		
+    		
+    }
     @Test
     void testeEmployeeServiceExampleMethod() {
         empSvc.exampleMethod();

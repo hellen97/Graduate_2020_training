@@ -1,5 +1,13 @@
 package com.mastek.hrapp.entities;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="JPA_TABLE_PER_CLASS_CARD_PAYMENT")
+//@DiscriminatorValue("CARD")
+
 public class CardPayment  extends Payment {
 	
 	long cardNumber;

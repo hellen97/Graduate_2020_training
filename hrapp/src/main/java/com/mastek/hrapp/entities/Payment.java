@@ -1,10 +1,32 @@
 package com.mastek.hrapp.entities;
 
+import javax.annotation.Generated;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="JPA_TABLE_PER_CLASS_PAYMENT")
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+
+//@DiscriminatorColumn(discriminatorType=DiscriminatorType.STRING, name="PAYMENT_TYPE")
+//@DiscriminatorValue("CASH") 
+
+
 public class Payment {
 	
 	int paymentId;
 	double amount;
 	
+@Id 
+@GeneratedValue(strategy=GenerationType.AUTO)	
 	public int getPaymentId() {
 		return paymentId;
 	}
