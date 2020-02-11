@@ -49,6 +49,28 @@ class HrappApplicationTests {
     ProjectJPADAO proDAO;
     
     @Test
+    void  testFindEmployeesBySalary(){
+    	
+    	int minSalary=100;
+    	int maxSalary=5000;
+    								// empDAO.findBySalary(minSalary, maxSalary)
+    	Iterable<Employee> emps = empDAO.findBySalary(100,5000);
+    	System.out.println("All employees having salary between 100 and 5000 "+minSalary + " and max" +maxSalary);
+    	for (Employee employee : emps) {
+			System.out.println(employee);
+		}
+    	
+    }
+    
+    	
+    @Test
+    void testFindEmployeesyDesignation() {
+    	
+    }
+    
+    
+    
+    @Test
     void testcashPaymentAdd() {
     	Payment cashP = new Payment();
     	cashP.setAmount(100);
