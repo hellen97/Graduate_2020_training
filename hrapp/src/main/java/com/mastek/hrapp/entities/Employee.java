@@ -2,6 +2,7 @@ package com.mastek.hrapp.entities;
 
  
 
+import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -48,6 +48,7 @@ public class Employee {
     Department currentDepartment;
     @ManyToOne //one Employee is associated with one of the many departments
     @JoinColumn(name="fk_department_number") // the forgien key column to sotre the associate deptno
+    @Transient // ignore this prooeprty when storing employee data in MongoDB
     public Department getCurrentDepartment() {
 		return currentDepartment;
 	}
@@ -66,6 +67,8 @@ public class Employee {
 				inverseJoinColumns = {@JoinColumn(name="fk_projectId")}
 				)
 	
+	
+	@Transient // ignore this prooeprty when storing employee data in MongoDB
 	public Set<Project> getProjectsAssigned() {
 		return projectsAssigned;
 	}

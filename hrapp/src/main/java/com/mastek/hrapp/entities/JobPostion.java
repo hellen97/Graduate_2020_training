@@ -18,7 +18,15 @@ public class JobPostion {
 	 Set<Employee> applicants = new HashSet<>();
 	 
 	
-	 public JobPostion() {
+	 public Set<Employee> getApplicants() {
+		return applicants;
+	}
+
+	public void setApplicants(Set<Employee> applicants) {
+		this.applicants = applicants;
+	}
+
+	public JobPostion() {
 			
 		}
 	 
