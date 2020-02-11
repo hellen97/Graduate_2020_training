@@ -230,5 +230,19 @@ class HrappApplicationTests {
     	assertTrue(emp.getProjectsAssigned().size()>0,"projects assgined");
     }
     
+    
+    @Test
+    void testApplyForJobPosition() {
+    	JobPostion jp = empSvc.applyForJobPosition(1, 123);    
+    	
+  assertNotNull (jp, "jOB NOT APPLIED:"+123);
+  System.out.println("applicants for JOB ID:");
+    
+  for (Employee applicant : jp.getApplicants()) {
+	  System.out.println(applicant);
+  }
     }
+    
+    }
+
 

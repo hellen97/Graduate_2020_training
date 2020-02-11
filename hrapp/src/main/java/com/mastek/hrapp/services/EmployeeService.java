@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.hrapp.dao.DepartmentJPADAO;
 import com.mastek.hrapp.dao.EmployeeJPADAO;
+import com.mastek.hrapp.dao.JobPostionsDAO;
 import com.mastek.hrapp.dao.ProjectJPADAO;
 import com.mastek.hrapp.entities.Department;
 import com.mastek.hrapp.entities.Employee;
+import com.mastek.hrapp.entities.JobPostion;
 import com.mastek.hrapp.entities.Project;
 
 @Component //marking the class as bean to be created
@@ -30,6 +32,9 @@ public class EmployeeService {
 	
 	@Autowired
 	ProjectJPADAO projectDAO; 
+	
+	@Autowired
+	JobPostionsDAO jobsDAO;
 	
 	
 	
@@ -92,7 +97,14 @@ public class EmployeeService {
 	return emp; //return employee object 
 	}
 	
+@Transactional
+public JobPostion applyForJobPosition (int jobId, int empno) {
+	JobPostion job = jobsDAO.findById(jobId).get();
+	Employee emp = empDAO.findById(empno).get();
 	
+	job.getApplicants().add(emp);
+	job= jobsDAO.save(job);
+			return job;
 	
-	
+	}
 }
