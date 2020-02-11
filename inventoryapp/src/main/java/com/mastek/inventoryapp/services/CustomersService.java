@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.mastek.inventoryapp.dao.CategoryJPADAO;
-import com.mastek.inventoryapp.dao.CutomersJPADAO;
+import com.mastek.inventoryapp.dao.CustomersJPADAO;
 import com.mastek.inventoryapp.dao.ProductsJPADAO;
 import com.mastek.inventoryapp.entities.Category;
 import com.mastek.inventoryapp.entities.Customers;
@@ -23,7 +23,7 @@ public class CustomersService {
 	String exampleProduct;
 	
 	@Autowired
-	CutomersJPADAO cusDAO;
+	CustomersJPADAO cusDAO;
 	
 	@Autowired
 	CategoryJPADAO catDAO;
@@ -71,8 +71,8 @@ public class CustomersService {
 		Products prod = proDAO.findById(prono).get();
 		
 		//assign the assoication between and department
-		cus.setCurrentCategory(prod);  // assign the department to employee
-		prod.getProjectTeam().add(cus);	    // add the employee in the department team 
+		cus.setCurrentCategory(prod);  // assign the category to peoduct
+		prod.getItem().add(cus);	     
 		
 		
 		// save the changes in database 

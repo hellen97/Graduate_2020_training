@@ -12,7 +12,7 @@ import com.mastek.inventoryapp.entities.Customers;
  
 
 @Repository //Declare the DAO layer as repository to manage data operations 
-public interface CutomersJPADAO extends
+public interface CustomersJPADAO extends
                 CrudRepository<Customers, Integer>{                                     //Crud repository <class,PrimaryKeyType>
 
  

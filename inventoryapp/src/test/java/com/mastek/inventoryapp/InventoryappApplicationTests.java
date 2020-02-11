@@ -2,8 +2,10 @@ package com.mastek.inventoryapp;
 
  
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,80 +13,79 @@ import com.mastek.inventoryapp.dao.CategoryJPADAO;
 //import com.mastek.hrapp.dao.DepartmentJPADAO;
 import com.mastek.inventoryapp.dao.CustomersJPADAO;
 import com.mastek.inventoryapp.dao.ProductsJPADAO;
-import com.mastek.inventoryapp.entities.Department;
+import com.mastek.inventoryapp.entities.Category;
+import com.mastek.inventoryapp.entities.Customers;
+import com.mastek.inventoryapp.entities.Orders;
+import com.mastek.inventoryapp.entities.Products;
 //import com.mastek.hrapp.dao.ProjectJPADAO;
 //import com.mastek.hrapp.entities.Department;
-import com.mastek.inventoryapp.entities.Designation;
-import com.mastek.hrapp.entities.Employee;
-import com.mastek.hrapp.entities.Project;
-//import com.mastek.hrapp.entities.Project;
-import com.mastek.hrapp.services.EmployeeService;
+import com.mastek.inventoryapp.services.CustomersService;
 
  
 
 @SpringBootTest
-class HrappApplicationTests {
+class Inventroyapp{
     
     @Autowired // spring will provide the object using IOC, dependency Injection technique
-    EmployeeService empSvc;
+    CustomersService cusSvc;
     
     @Autowired
-    EmployeeService empSvc1;
+    CustomersService cusSvc1;
     
     
     
     
     @Autowired
-    EmployeeJPADAO empDAO;
+   CustomersJPADAO cusDAO;
     
     @Autowired
-    DepartmentJPADAO depDAO;
+    CategoryJPADAO catDAO;
     
     @Autowired
-    ProjectJPADAO proDAO;
+    ProductsJPADAO proDAO;
     
     
     
     @Test
     void testeEmployeeServiceExampleMethod() {
-        empSvc.exampleMethod();
-        empSvc1.exampleMethod();
+        cusSvc.exampleMethod();
+        cusSvc1.exampleMethod();
         
     }
     
     @Test
-    void testEmployeeDAOAdd() {
-        Employee emp = new Employee();
-        emp.setName("JIM");
-        emp.setSalary(9997);
-        emp.setDesignation(Designation.DEVELOPER);
+    void testCustomerDAOAdd() {
+        Customers cus = new Customers();
+        cus.setName("JIM");
+        cus.setCredit(12);
+        cus.setOrders(Orders.COLLECT);
         
-        emp = empDAO.save(emp);
+        cus = cusDAO.save(cus);
         
     
-        System.out.println(emp);
-        assertNotNull(emp, "Employee Not Added");
+        System.out.println(cus);
+        assertNotNull(cus, "Customer Not Added");
     }
     
     @Test
-    void testListEmployees() {
-        Iterable<Employee> emps = empDAO.findAll();
-        assertNotNull(emps,"Employee not Found");
-        for (Employee employee : emps) {
-            System.out.println(employee);
+    void testListCustomers() {
+        Iterable<Customers> cuss = cusDAO.findAll();
+        assertNotNull(cuss,"Customer not Found");
+        for (Customers customers : cuss) {
+            System.out.println(customers);
         }
     }
     
     @Test
-    void testUpdateEmployees() {
-    	Employee emp = empDAO.findById(1).get();
-    			System.out.println("Employee fetched:" +emp);
+    void testUpdateCustomers() {
+    	Customers cus = cusDAO.findById(1).get();
+    			System.out.println("Customers fetched:" +cus);
     			
-    			emp.setSalary(emp.getSalary()+11);
-    			emp.setDesignation(Designation.ARCHITECT);
-    			emp = empDAO.save(emp);
+    			cus.setCredit(cus.getCredit()+11);
+    			cus.setOrders(Orders.PRENUIUM);
+    			cus = cusDAO.save(cus);
     			
-    			System.out.println("updated employee:"+ emp);
+    			System.out.println("updated Customers:"+ cus);
     	
   }
     
@@ -98,25 +99,25 @@ class HrappApplicationTests {
     
     
    @Test
-   void testDepartmentDAOadd() {
-      Department dep = new Department();
-      dep.setName("New Dep");
-      dep.setLocation("Leeds");
+   void testCategoryDAOadd() {
+      Category cat = new Category();
+      cat.setName("New category");
+      cat.setLocation("Leeds");
        
-       dep = depDAO.save(dep);
+       cat = catDAO.save(cat);
        
-        System.out.println(dep);
-        assertNotNull(dep,"Department Not Added");
+        System.out.println(cat);
+        assertNotNull(cat,"Category Not Added");
     }
     
     @Test
     void testProjectDAOadd() {
-        Project pro = new Project();
-        pro.setName("New Project");
+        Products pro = new Products();
+        pro.setName("New Product");
         pro.setemployeeName("Morrisons");
         
         pro = proDAO.save(pro);
-        
+      
         System.out.println(pro);
         assertNotNull(pro,"Project Not Added");
     }
