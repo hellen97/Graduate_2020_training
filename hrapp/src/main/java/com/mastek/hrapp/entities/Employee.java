@@ -36,7 +36,7 @@ query="select e from Employee e where e.salary between :minSalary and :maxSalary
 
 
 @NamedQuery(name="Employee.findByDesignation",
-				query="select e from Employee e where e.designation=:desgination")	
+				query="select e from Employee e where e.designation=:designation")	
 })
 public class Employee {
     

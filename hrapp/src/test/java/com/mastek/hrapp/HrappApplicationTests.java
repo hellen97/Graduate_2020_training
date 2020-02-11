@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.mastek.hrapp.dao.DepartmentJPADAO;
 //import com.mastek.hrapp.dao.DepartmentJPADAO;
 import com.mastek.hrapp.dao.EmployeeJPADAO;
+import com.mastek.hrapp.dao.JobPostionsDAO;
 import com.mastek.hrapp.dao.PaymentJPADAO;
 import com.mastek.hrapp.dao.ProjectJPADAO;
 import com.mastek.hrapp.entities.CardPayment;
@@ -19,6 +20,7 @@ import com.mastek.hrapp.entities.Department;
 //import com.mastek.hrapp.entities.Department;
 import com.mastek.hrapp.entities.Designation;
 import com.mastek.hrapp.entities.Employee;
+import com.mastek.hrapp.entities.JobPostion;
 import com.mastek.hrapp.entities.Payment;
 import com.mastek.hrapp.entities.Project;
 //import com.mastek.hrapp.entities.Project;
@@ -48,27 +50,45 @@ class HrappApplicationTests {
     @Autowired
     ProjectJPADAO proDAO;
     
+    @Autowired
+    JobPostionsDAO jobDAO;
+    
+    @Test
+    void testAddJobPostionDocument() {
+    	JobPostion jp = new JobPostion();
+    	jp.setJobId(122);
+    	jp.setLocation("Leeds");
+    	jp.setSkillesRequierd("NHS");
+    	jp.setNoOfPostions(3);
+    	
+    	jobDAO.save(jp);
+    	
+    	assertNotNull(jp,"Job Positions not saved");
+    }
+    
+    @Test 
+    void testListAllJobPostions() {
+    System.out.println("print all job postions");
+    for(JobPostion jp: jobDAO.findAll()){
+    	System.out.println(jp);
+    
+    }
+    
+    }
+    
     @Test
     void  testFindEmployeesBySalary(){
     	
-    	int minSalary=100;
-    	int maxSalary=5000;
+    	double minSalary=1.0;
+    	double maxSalary=1000.0;
     								// empDAO.findBySalary(minSalary, maxSalary)
-    	Iterable<Employee> emps = empDAO.findBySalary(100,5000);
-    	System.out.println("All employees having salary between 100 and 5000 "+minSalary + " and max" +maxSalary);
+    	Iterable<Employee> emps = empDAO.findBySalary(1.0,1000.0);
+    	System.out.println("All employees having salary between 1.0 and 1000.0 "+minSalary + " and max" +maxSalary);
     	for (Employee employee : emps) {
 			System.out.println(employee);
 		}
     	
     }
-    
-    	
-    @Test
-    void testFindEmployeesyDesignation() {
-    	
-    }
-    
-    
     
     @Test
     void testcashPaymentAdd() {
@@ -185,8 +205,8 @@ class HrappApplicationTests {
     
     @Test
     void testFindEmployeeByDesignation() {
-    	Iterable<Employee> emps = empDAO.findByDesignation(Designation.MANAGER);
-    	System.out.println("all emoloyees with designation as "+ Designation.MANAGER);
+    	Iterable<Employee> emps = empDAO.findByDesignation(Designation.TESTER);
+    	System.out.println("all emoloyees with designation as "+ Designation.TESTER);
     	
     	for (Employee employee :emps) {
     		System.out.println(employee);

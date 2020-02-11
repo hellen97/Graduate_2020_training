@@ -15,7 +15,7 @@ import com.mastek.hrapp.entities.Employee;
 public interface EmployeeJPADAO extends
                 CrudRepository<Employee, Integer>{
 
-	Iterable<Employee> findBySalary(@Param("min") int minSalary,@Param("Max") int maxSalary);                                     //Crud repository <class,PrimaryKeyType>
+	Iterable<Employee> findBySalary(@Param("minSalary") double minSalary,@Param("maxSalary") double maxSalary);                                     //Crud repository <class,PrimaryKeyType>
 
 	Iterable<Employee> findByDesignation(@Param("designation")Designation designation); // define the methods for each name query in the entity
 	// mapp each parameter with @param(<name>) 
