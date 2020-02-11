@@ -182,6 +182,16 @@ class HrappApplicationTests {
         System.out.println(pro);
         assertNotNull(pro,"Project Not Added");
     }
+    
+    @Test
+    void testFindEmployeeByDesignation() {
+    	Iterable<Employee> emps = empDAO.findByDesignation(Designation.MANAGER);
+    	System.out.println("all emoloyees with designation as "+ Designation.MANAGER);
+    	
+    	for (Employee employee :emps) {
+    		System.out.println(employee);
+    	}
+    }
 
     
     

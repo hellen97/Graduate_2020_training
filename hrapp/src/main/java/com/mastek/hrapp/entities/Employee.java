@@ -18,6 +18,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
  
@@ -25,6 +28,16 @@ import javax.persistence.Table;
 @Entity // declares the class as entity, to be managed by JPA
 @Table(name="JPA_Employees") // declares the table name associated with this class
 @EntityListeners({EmployeeListner.class})//call the correct listner event methd on lifecylce event
+@NamedQueries({
+@NamedQuery(name="Employee.findBySalary", // delcare the query name as the method in DAO
+query="select e from Employee e where e.salary between :minSalary and :maxSalary"),
+// identify thr query to fetch Employee objects with properties and paramters 
+// all the params are to be declared using @Param("<name>") in the DAO interface 
+
+
+@NamedQuery(name="Employee.findByDesignation",
+				query="select e from Employee e where e.designation=:desgination")	
+})
 public class Employee {
     
     int empno; 
