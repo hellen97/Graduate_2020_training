@@ -3,7 +3,7 @@ package com.mastek.hrapp.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
  
 @Document (collection ="JPA_INTERNAL_JOB_POSTIONS")
@@ -29,7 +29,7 @@ public class JobPostion {
 	public JobPostion() {
 			
 		}
-	 
+	@Id
 	public int getJobId() {
 		return jobId;
 	}

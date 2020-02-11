@@ -56,7 +56,7 @@ class HrappApplicationTests {
     @Test
     void testAddJobPostionDocument() {
     	JobPostion jp = new JobPostion();
-    	jp.setJobId(122);
+    	jp.setJobId(129);
     	jp.setLocation("Leeds");
     	jp.setSkillesRequierd("NHS");
     	jp.setNoOfPostions(3);
@@ -233,16 +233,17 @@ class HrappApplicationTests {
     
     @Test
     void testApplyForJobPosition() {
-    	JobPostion jp = empSvc.applyForJobPosition(1, 123);    
+    	int jobId=127;
+    	int empno = 2;
+    	JobPostion jp = empSvc.applyForJobPosition(jobId, empno);    
     	
-  assertNotNull (jp, "jOB NOT APPLIED:"+123);
-  System.out.println("applicants for JOB ID:");
-    
-  for (Employee applicant : jp.getApplicants()) {
-	  System.out.println(applicant);
-  }
-    }
-    
-    }
+    	assertNotNull (jp, "jOB NOT APPLIED:"+jobId);
+   
+		  for (Employee applicant : jp.getApplicants()) {
+			  System.out.println(applicant);
+		  }
+	  }
+	    
+}
 
 

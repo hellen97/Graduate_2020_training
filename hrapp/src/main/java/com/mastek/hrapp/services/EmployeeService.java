@@ -99,12 +99,16 @@ public class EmployeeService {
 	
 @Transactional
 public JobPostion applyForJobPosition (int jobId, int empno) {
+	System.out.println("Applying for Job");
 	JobPostion job = jobsDAO.findById(jobId).get();
+	System.out.println(job);
+	
 	Employee emp = empDAO.findById(empno).get();
+	System.out.println(emp);
 	
 	job.getApplicants().add(emp);
 	job= jobsDAO.save(job);
-			return job;
+	return job;
 	
 	}
 }

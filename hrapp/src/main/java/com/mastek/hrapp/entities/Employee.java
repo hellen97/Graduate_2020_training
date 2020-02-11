@@ -2,7 +2,6 @@ package com.mastek.hrapp.entities;
 
  
 
-import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,8 +21,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import org.springframework.data.annotation.Transient; 
 
- 
+
 
 @Entity // declares the class as entity, to be managed by JPA
 @Table(name="JPA_Employees") // declares the table name associated with this class
