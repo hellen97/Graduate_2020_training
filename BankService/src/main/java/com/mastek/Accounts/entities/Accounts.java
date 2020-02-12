@@ -22,7 +22,7 @@ public class Accounts {
 
  
 
-    int    Accno;
+    int    accno;
     String name;
     String type;
     
@@ -49,37 +49,37 @@ public class Accounts {
  
 
     @Id
-    @Column(name="department_number")
+    @Column(name="Account_number")
     @GeneratedValue (strategy=GenerationType.AUTO)
-    public int getDeptno() {
-        return depno;
+    public int getAcctno() {
+        return accno;
     }
-    public void setDeptno(int deptno) {
-        this.depno = deptno;
+    public void setAcctno(int acctno) {
+        this.accno = acctno;
     }
-    @Column(name="department_name",length=50,nullable=false)
+    @Column(name="Account_name",length=50,nullable=false)
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-    @Column(name="location_name",length=50, nullable=false)
-    public String getLocation() {
-        return location;
+    @Column(name="type_name",length=50, nullable=false)
+    public String getType() {
+        return type;
     }
-    public void setLocation(String location) {
-        this.location = location;
+    public void setType(String type) {
+        this.type = type;
     }
     @Override
     public String toString() {
-        return "Department [deptno=" + depno + ", name=" + name + ", location=" + location + "]";
+        return "Accounts [acctno=" + accno + ", name=" + name + ", type=" + type + "]";
     }
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + depno;
+        result = prime * result + accno;
         return result;
     }
     @Override
@@ -90,8 +90,8 @@ public class Accounts {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Department other = (Department) obj;
-        if (depno != other.depno)
+        Accounts other = (Accounts) obj;
+        if (accno != other.accno)
             return false;
         return true;
     } 

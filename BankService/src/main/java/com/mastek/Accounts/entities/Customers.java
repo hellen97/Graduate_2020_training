@@ -54,15 +54,15 @@ public class Customers {
 	}
 
 	public void setCurrentAccounts(Accounts currentAccounts) {
-		this.currentDepartment = currentDepartment;
+		this.currentAccounts = currentAccounts;
 	}
 
 	
-	Set<Project> projectsAssigned = new HashSet<>();
+	Set<Transaction> transactionAssigned = new HashSet<>();
 	
 	
 	@ManyToMany (cascade=CascadeType.ALL)// configure many to many assoicationn for entities
-	@JoinTable(name="JPA_PROJECT_ASSIGMENTS",
+	@JoinTable(name="JPA_TRANSACTION",
 				joinColumns= {@JoinColumn(name="fk_empno")},
 				inverseJoinColumns = {@JoinColumn(name="fk_projectId")}
 				)
