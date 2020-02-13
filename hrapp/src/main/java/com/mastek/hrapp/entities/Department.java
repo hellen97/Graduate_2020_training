@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
 
  
 
@@ -22,11 +23,13 @@ public class Department {
 
  
 
-    int    depno;
+    int depno;
+    @FormParam ("name")
     String name;
+    @FormParam ("location")
     String location;
     
-    Set<Employee> team = new HashSet();
+    Set<Employee> team = new HashSet<Employee>();
     
     //associates the many enitiys using collecion withcascade enabled 
     @OneToMany(mappedBy="currentDepartment", cascade=CascadeType.ALL)

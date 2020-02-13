@@ -1,23 +1,19 @@
 package com.mastek.hrapp.services;
 
  
-
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
- 
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-
- 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import com.mastek.hrapp.apis.DepartmentAPI;
+import com.mastek.hrapp.dao.DepartmentJPADAO;
+import com.mastek.hrapp.entities.Department;
 
- 
-
-public class DepartmentService {
+public class DepartmentService implements DepartmentAPI {
 String exampleProperty;
+
+@Autowired
+DepartmentJPADAO deptDAO;
     
     public DepartmentService() {
         System.out.println("Department Service Created");
@@ -40,13 +36,26 @@ String exampleProperty;
     public String getExampleProperty() {
         return exampleProperty;
     }
-
- 
-
     @Value("Spring Example Data Source")    // if you don't set the value the property will not be set 
     public void setExampleProperty(String exampleProperty) {
         System.out.println("Example Property Set :"+exampleProperty);
         this.exampleProperty = exampleProperty;
     }
-    
+    @Override 
+	public Iterable<Department>listAllDepartments(){
+	System.out.print("listing all Departments");
+	return deptDAO.findAll();
+}
+
+@Override
+public Department findByDeptno(int depno) {
+	// TODO Auto-generated method stub
+	return deptDAO.findById(depno).get();
+}
+@Override
+public Department registerNewDepartment (Department newDepartment) {
+	// TODO Auto-generated method stub
+	newDepartment = deptDAO.save(newDepartment);
+	return newDepartment;
+}
 }
