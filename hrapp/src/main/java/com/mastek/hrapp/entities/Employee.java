@@ -22,6 +22,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.data.annotation.Transient; 
 
@@ -51,6 +52,7 @@ public class Employee {
     @ManyToOne //one Employee is associated with one of the many departments
     @JoinColumn(name="fk_department_number") // the forgien key column to sotre the associate deptno
     @Transient // ignore this prooeprty when storing employee data in MongoDB
+    @XmlTransient // ignore the assoication porpperty when shared via service
     public Department getCurrentDepartment() {
 		return currentDepartment;
 	}
@@ -71,6 +73,7 @@ public class Employee {
 	
 	
 	@Transient // ignore this prooeprty when storing employee data in MongoDB
+	@XmlTransient // ignore the association property when shared via service 
 	public Set<Project> getProjectsAssigned() {
 		return projectsAssigned;
 	}
