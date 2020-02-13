@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -44,8 +45,11 @@ query="select e from Employee e where e.salary between :minSalary and :maxSalary
 public class Employee {
     
     int empno; 
-    String name;            // This is the only thing that is typed. the rest are generated 
+    @FormParam("name")
+    String name;
+    @FormParam("salary")// This is the only thing that is typed. the rest are generated 
     double salary;
+    @FormParam("designation")
     Designation designation;
     
     Department currentDepartment;

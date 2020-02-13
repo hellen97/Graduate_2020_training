@@ -118,4 +118,16 @@ import com.mastek.hrapp.entities.Project;
 	System.out.print("listing all employees");
 	return empDAO.findAll();
 }
+
+@Override
+public Employee findByEmpno(int empno) {
+	// TODO Auto-generated method stub
+	return empDAO.findById(empno).get();
+}
+@Override
+public Employee registerNewEmployee(Employee newEmployee) {
+	// TODO Auto-generated method stub
+	newEmployee = empDAO.save(newEmployee);
+	return newEmployee;
+}
 }
