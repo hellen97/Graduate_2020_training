@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.mastek.hrapp.apis.EmployeeAPI;
 import com.mastek.hrapp.dao.DepartmentJPADAO;
 import com.mastek.hrapp.dao.EmployeeJPADAO;
 import com.mastek.hrapp.dao.JobPostionsDAO;
@@ -20,7 +21,7 @@ import com.mastek.hrapp.entities.Project;
 
 @Component //marking the class as bean to be created
 @Scope("singleton") // singleton:One object used across test cases, prototype: one object per request
-public class EmployeeService {
+public class EmployeeService implements EmployeeAPI {
 
 	String exampleProperty;
 	
@@ -111,4 +112,10 @@ public JobPostion applyForJobPosition (int jobId, int empno) {
 	return job;
 	
 	}
+
+@Override 
+public Iterable<Employee>listAllEmployees(){
+	System.out.print("listing all employees");
+	return empDAO.findAll();
+}
 }
