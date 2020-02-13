@@ -26,9 +26,9 @@ public class APIconfig extends ResourceConfig{
 
 		register(EmployeeService.class);
 
-		register(DepartmentService.class);
+	//	register(DepartmentService.class);
 
-		register(ProjectService.class);
+	// register(ProjectService.class);
 
 	}
 

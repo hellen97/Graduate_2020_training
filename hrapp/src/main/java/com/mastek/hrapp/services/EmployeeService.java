@@ -21,7 +21,7 @@ import com.mastek.hrapp.entities.Project;
 
 @Component //marking the class as bean to be created
 @Scope("singleton") // singleton:One object used across test cases, prototype: one object per request
-public class EmployeeService implements EmployeeAPI {
+	public class EmployeeService implements EmployeeAPI {
 
 	String exampleProperty;
 	
@@ -99,7 +99,7 @@ public class EmployeeService implements EmployeeAPI {
 	}
 	
 @Transactional
-public JobPostion applyForJobPosition (int jobId, int empno) {
+	public JobPostion applyForJobPosition (int jobId, int empno) {
 	System.out.println("Applying for Job");
 	JobPostion job = jobsDAO.findById(jobId).get();
 	System.out.println(job);
@@ -114,7 +114,7 @@ public JobPostion applyForJobPosition (int jobId, int empno) {
 	}
 
 @Override 
-public Iterable<Employee>listAllEmployees(){
+	public Iterable<Employee>listAllEmployees(){
 	System.out.print("listing all employees");
 	return empDAO.findAll();
 }
