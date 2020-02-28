@@ -111,16 +111,16 @@ class InventoryAppApplicationTests {
 	}
 	
 	
-	@Test
+	/*@Test
 	void testAssignCustomersToOrders() {
 				// empSVC. assigning employee to department (empno, deptno)
 	Customers  cus = cusSvc.assignCustomersToOrders(122, 125);
 	assertNotNull(cus.getCurrentOrder(),"order Not Assigned");
-	}
+	}*/
 	
-	@Test
+/*	@Test
 	void testAssignOrdersToProducts() {
 		Orders ord = ordSvc.assignOrderToProduct(125, 132);
 		assertTrue(ord.getproductsAssigned().size()>0, "project assigned");
-	}
+	}*/
 }

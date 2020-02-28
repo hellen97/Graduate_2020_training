@@ -1,5 +1,8 @@
 package com.mastek.hrapp.services;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.transaction.Transactional;
@@ -129,5 +132,28 @@ public Employee registerNewEmployee(Employee newEmployee) {
 	// TODO Auto-generated method stub
 	newEmployee = empDAO.save(newEmployee);
 	return newEmployee;
+}
+
+@Override
+@Transactional // to fetch all collections 
+public Set<Project> getEmployeeProjects(int empno) {
+	Employee currentEmp = empDAO.findById(empno).get();
+	
+	//get the dependcies populated within the method transaction
+	int count = currentEmp.getProjectsAssigned().size();
+	System.out.println(count +"projects found");
+	Set<Project> projects = currentEmp.getProjectsAssigned();
+	// TODO Auto-generated method stub
+	
+	return projects;
+}
+
+@Override
+public Project registerProjectForEmployee(int empno, Project newProject) {
+
+		newProject = projectDAO.save(newProject);
+		assignEmployeeToProject(empno, newProject.getProjectId());
+			return newProject;
+	
 }
 }

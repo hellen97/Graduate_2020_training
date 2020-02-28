@@ -12,19 +12,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.ws.rs.FormParam;
+import javax.xml.bind.annotation.XmlTransient;
 
- 
 
 @Entity
 @Table(name="JPA_Projects")
 public class Project {
     
         int proId;
+        @FormParam("name")
         String name;
+        @FormParam("employeeName")
         String employeeName;
         
         Set<Employee> projectTeam= new HashSet<>();
-        
+    @XmlTransient
     @ManyToMany (mappedBy="projectsAssigned")//provide the property is employee with manytomany and jointable confif
     public Set<Employee> getProjectTeam() {
 			return projectTeam;

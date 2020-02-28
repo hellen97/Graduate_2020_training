@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.mastek.hrapp.services.DepartmentService;
 import com.mastek.hrapp.services.EmployeeService;
-import com.mastek.training.hrapp.apis.ProjectService;
 
 
 
@@ -21,7 +20,9 @@ public class APIconfig extends ResourceConfig{
 
 
 	public APIconfig() {
-
+		//enable the CORS filter for UI applications to access the service 
+		register(CORSFilter.class);
+		
 		//register each Service class in ResourceConfig
 
 		register(EmployeeService.class);
